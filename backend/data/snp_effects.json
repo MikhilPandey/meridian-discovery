@@ -1,0 +1,90 @@
+{
+  "TCF7L2": {
+    "rsid": "rs7903146",
+    "risk_allele": "T",
+    "effect": "Impairs insulin secretion from pancreatic beta cells",
+    "genotypes": ["CC", "CT", "TT"],
+    "modifiers": {
+      "CC": { "amplitude": 1.0, "clearance": 1.0, "fasting_offset": 0 },
+      "CT": { "amplitude": 1.15, "clearance": 0.90, "fasting_offset": 1.5 },
+      "TT": { "amplitude": 1.30, "clearance": 0.80, "fasting_offset": 3.0 }
+    },
+    "interpretations": {
+      "CC": "Normal glucose regulation",
+      "CT": "1 risk allele -- modestly elevated post-meal spikes",
+      "TT": "2 risk alleles -- noticeably elevated post-meal spikes and slower clearance"
+    },
+    "source": "Zeevi et al. Cell 2015; Grant et al. Nature Genetics 2006",
+    "population_frequency": "~30% carry at least one T allele"
+  },
+  "GCK": {
+    "rsid": "rs1799884",
+    "risk_allele": "T",
+    "effect": "Alters glucose sensing threshold in pancreatic beta cells",
+    "genotypes": ["CC", "CT", "TT"],
+    "modifiers": {
+      "CC": { "amplitude": 1.0, "clearance": 1.0, "fasting_offset": 0 },
+      "CT": { "amplitude": 1.05, "clearance": 1.0, "fasting_offset": 3.5 },
+      "TT": { "amplitude": 1.10, "clearance": 1.0, "fasting_offset": 7.0 }
+    },
+    "interpretations": {
+      "CC": "Normal glucose sensing",
+      "CT": "Slightly elevated fasting glucose set-point",
+      "TT": "Elevated fasting glucose set-point"
+    },
+    "source": "Dupuis et al. Nature Genetics 2010",
+    "population_frequency": "~20% carry risk allele"
+  },
+  "SLC30A8": {
+    "rsid": "rs13266634",
+    "risk_allele": "C",
+    "effect": "Affects zinc transport in beta cells, impairs insulin crystallization",
+    "genotypes": ["CC", "CT", "TT"],
+    "modifiers": {
+      "CC": { "amplitude": 1.10, "clearance": 0.95, "fasting_offset": 0 },
+      "CT": { "amplitude": 1.05, "clearance": 0.97, "fasting_offset": 0 },
+      "TT": { "amplitude": 1.0, "clearance": 1.0, "fasting_offset": 0 }
+    },
+    "interpretations": {
+      "CC": "Reduced insulin secretion (risk genotype)",
+      "CT": "Mildly reduced insulin secretion",
+      "TT": "Protective -- normal insulin secretion"
+    },
+    "source": "Sladek et al. Nature 2007",
+    "population_frequency": "~70% carry C allele (common)"
+  },
+  "MTNR1B": {
+    "rsid": "rs10830963",
+    "risk_allele": "G",
+    "effect": "Disrupts melatonin signaling, impairs nocturnal insulin release",
+    "genotypes": ["CC", "CG", "GG"],
+    "modifiers": {
+      "CC": { "amplitude": 1.0, "clearance": 1.0, "fasting_offset": 0 },
+      "CG": { "amplitude": 1.08, "clearance": 0.95, "fasting_offset": 1.0 },
+      "GG": { "amplitude": 1.18, "clearance": 0.90, "fasting_offset": 2.0 }
+    },
+    "interpretations": {
+      "CC": "Normal melatonin-insulin signaling",
+      "CG": "Mildly elevated morning glucose",
+      "GG": "Elevated morning glucose, especially with late meals"
+    },
+    "source": "Bouatia-Naji et al. Nature Genetics 2009"
+  },
+  "PPARG": {
+    "rsid": "rs1801282",
+    "risk_allele": "C",
+    "effect": "Affects adipocyte differentiation and insulin sensitivity",
+    "genotypes": ["CC", "CG", "GG"],
+    "modifiers": {
+      "CC": { "amplitude": 1.0, "clearance": 1.0, "fasting_offset": 0 },
+      "CG": { "amplitude": 0.95, "clearance": 1.05, "fasting_offset": 0 },
+      "GG": { "amplitude": 0.92, "clearance": 1.10, "fasting_offset": 0 }
+    },
+    "interpretations": {
+      "CC": "Pro12Pro -- baseline insulin sensitivity",
+      "CG": "Pro12Ala -- slightly improved insulin sensitivity",
+      "GG": "Ala12Ala -- improved insulin sensitivity"
+    },
+    "source": "Altshuler et al. Nature Genetics 2000"
+  }
+}

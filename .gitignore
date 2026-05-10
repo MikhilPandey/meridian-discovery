@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / Next
+node_modules/
+.next/
+out/
+*.log
+.npm/
+.pnpm-debug.log*
+.yarn-integrity
+.DS_Store
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==============================================================================
+# Privacy belt-and-braces: never commit a user's uploaded genome or CGM data,
+# even if someone accidentally drags a file into the repo. The /upload flow
+# never writes to disk, but if a file appears in the working tree it stays
+# untracked.
+# ==============================================================================
+*.txt
+*.tsv
+*.csv
+*.pdf
+genome*
+cgm*
+ottai*
+23andme*
+ancestry*
+# Allow project-relevant text files explicitly:
+!README.md
+!**/requirements.txt
+!frontend/**/*.tsx
+!frontend/**/*.ts
+!backend/**/*.py
+# Project data CSVs (Shanghai cohort) live in backend/data/ and are public.
+!backend/data/*.csv
+!backend/data/*.json

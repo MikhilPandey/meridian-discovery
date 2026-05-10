@@ -1,0 +1,134 @@
+[
+  {
+    "id": "P001",
+    "shanghai_id": 85020,
+    "label": "Metabolically Healthy",
+    "age": 32,
+    "sex": "F",
+    "description": "Active, lean, strong insulin sensitivity",
+    "baseline_fasting": 85,
+    "insulin_sensitivity": 1.3,
+    "peak_delay_minutes": 35,
+    "clearance_rate": 0.04,
+    "carb_sensitivity": 0.7,
+    "protein_effect": 0.8,
+    "fat_attenuation": 0.6,
+    "genomic_variants": {
+      "TCF7L2": "CC",
+      "GCK": "CC",
+      "SLC30A8": "CC",
+      "MTNR1B": "CC",
+      "PPARG": "CC"
+    }
+  },
+  {
+    "id": "P002",
+    "shanghai_id": 14120,
+    "label": "Pre-diabetic Pattern",
+    "age": 48,
+    "sex": "M",
+    "description": "Sedentary, elevated fasting glucose, slow clearance",
+    "baseline_fasting": 108,
+    "insulin_sensitivity": 0.6,
+    "peak_delay_minutes": 45,
+    "clearance_rate": 0.02,
+    "carb_sensitivity": 1.4,
+    "protein_effect": 1.2,
+    "fat_attenuation": 0.3,
+    "genomic_variants": {
+      "TCF7L2": "CT",
+      "GCK": "CC",
+      "SLC30A8": "CT",
+      "MTNR1B": "CG",
+      "PPARG": "CC"
+    }
+  },
+  {
+    "id": "P003",
+    "shanghai_id": 46020,
+    "label": "Athletic, Carb-Adapted",
+    "age": 27,
+    "sex": "M",
+    "description": "Endurance athlete, high carb tolerance, fast clearance",
+    "baseline_fasting": 78,
+    "insulin_sensitivity": 1.5,
+    "peak_delay_minutes": 30,
+    "clearance_rate": 0.05,
+    "carb_sensitivity": 0.5,
+    "protein_effect": 0.6,
+    "fat_attenuation": 0.5,
+    "genomic_variants": {
+      "TCF7L2": "CC",
+      "GCK": "CC",
+      "SLC30A8": "CC",
+      "MTNR1B": "CC",
+      "PPARG": "CG"
+    }
+  },
+  {
+    "id": "P004",
+    "shanghai_id": 92020,
+    "label": "Genetic Risk Carrier",
+    "age": 35,
+    "sex": "F",
+    "description": "Healthy weight but carries TCF7L2 risk variants -- higher glucose spikes than expected",
+    "baseline_fasting": 95,
+    "insulin_sensitivity": 0.85,
+    "peak_delay_minutes": 40,
+    "clearance_rate": 0.03,
+    "carb_sensitivity": 1.2,
+    "protein_effect": 1.0,
+    "fat_attenuation": 0.4,
+    "genomic_variants": {
+      "TCF7L2": "TT",
+      "GCK": "CC",
+      "SLC30A8": "CT",
+      "MTNR1B": "CC",
+      "PPARG": "CC"
+    }
+  },
+  {
+    "id": "P005",
+    "shanghai_id": 56020,
+    "label": "Fat-Sensitive Responder",
+    "age": 41,
+    "sex": "F",
+    "description": "Normal carb response but high-fat meals cause delayed, prolonged glucose elevation",
+    "baseline_fasting": 90,
+    "insulin_sensitivity": 1.0,
+    "peak_delay_minutes": 55,
+    "clearance_rate": 0.025,
+    "carb_sensitivity": 0.9,
+    "protein_effect": 1.1,
+    "fat_attenuation": 0.9,
+    "genomic_variants": {
+      "TCF7L2": "CC",
+      "GCK": "CT",
+      "SLC30A8": "CC",
+      "MTNR1B": "CG",
+      "PPARG": "CC"
+    }
+  },
+  {
+    "id": "P006",
+    "shanghai_id": 75020,
+    "label": "South Asian Profile",
+    "age": 38,
+    "sex": "M",
+    "description": "Higher insulin resistance typical of South Asian metabolic phenotype, normal BMI",
+    "baseline_fasting": 100,
+    "insulin_sensitivity": 0.7,
+    "peak_delay_minutes": 42,
+    "clearance_rate": 0.028,
+    "carb_sensitivity": 1.3,
+    "protein_effect": 1.1,
+    "fat_attenuation": 0.5,
+    "genomic_variants": {
+      "TCF7L2": "CT",
+      "GCK": "CC",
+      "SLC30A8": "CC",
+      "MTNR1B": "CC",
+      "PPARG": "CC"
+    }
+  }
+]

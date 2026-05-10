@@ -1,0 +1,14 @@
+[
+  { "name": "White Rice (1 cup)", "carbs_g": 45, "protein_g": 4, "fat_g": 0, "category": "staple", "region": "universal" },
+  { "name": "Oatmeal with Berries", "carbs_g": 35, "protein_g": 8, "fat_g": 5, "category": "breakfast", "region": "western" },
+  { "name": "Margherita Pizza (2 slices)", "carbs_g": 52, "protein_g": 18, "fat_g": 22, "category": "mixed", "region": "western" },
+  { "name": "Grilled Chicken Salad", "carbs_g": 12, "protein_g": 35, "fat_g": 15, "category": "low-carb", "region": "western" },
+  { "name": "Banana", "carbs_g": 27, "protein_g": 1, "fat_g": 0, "category": "fruit", "region": "universal" },
+  { "name": "Dal Chawal (Lentils + Rice)", "carbs_g": 58, "protein_g": 14, "fat_g": 6, "category": "staple", "region": "india" },
+  { "name": "Protein Shake (Whey + Milk)", "carbs_g": 15, "protein_g": 40, "fat_g": 5, "category": "supplement", "region": "universal" },
+  { "name": "Nasi Lemak", "carbs_g": 65, "protein_g": 12, "fat_g": 28, "category": "staple", "region": "singapore" },
+  { "name": "Avocado Toast", "carbs_g": 22, "protein_g": 6, "fat_g": 18, "category": "breakfast", "region": "western" },
+  { "name": "Ice Cream (1 scoop)", "carbs_g": 28, "protein_g": 3, "fat_g": 10, "category": "dessert", "region": "universal" },
+  { "name": "Roti + Sabzi", "carbs_g": 38, "protein_g": 8, "fat_g": 10, "category": "staple", "region": "india" },
+  { "name": "Chicken Rice (Hainanese)", "carbs_g": 60, "protein_g": 28, "fat_g": 14, "category": "staple", "region": "singapore" }
+]
