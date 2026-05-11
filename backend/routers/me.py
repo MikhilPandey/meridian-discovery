@@ -20,6 +20,7 @@ from services.glucose_simulator import (
     peak,
     time_in_range_pct,
 )
+from services.model_meta import curve_model_meta
 from services.pdf_extractor import extract_stats_from_pdf
 
 router = APIRouter()
@@ -107,6 +108,9 @@ def build_me_profile(payload: MePayload):
             "effect": snp_def.get("effect"),
             "interpretation": state.genomic_modifier.interpret(gene, gt),
             "risk_allele": snp_def.get("risk_allele"),
+            "evidence_level": snp_def.get("evidence_level"),
+            "modifier_status": snp_def.get("modifier_status"),
+            "clinical_use": snp_def.get("clinical_use"),
         }
 
     return {
@@ -114,6 +118,7 @@ def build_me_profile(payload: MePayload):
         "genomic_variants": variant_panel,
         "modifier": genomic_mod,
         "sample_responses": sample_responses,
+        "model_meta": curve_model_meta(),
     }
 
 
@@ -167,4 +172,4 @@ def compare_me_to_archetypes(payload: MePayload):
         }
     )
 
-    return {"meal": meal, "results": results}
+    return {"meal": meal, "results": results, "model_meta": curve_model_meta()}

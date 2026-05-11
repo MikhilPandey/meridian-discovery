@@ -8,6 +8,7 @@ from services.glucose_simulator import (
     peak,
     time_in_range_pct,
 )
+from services.model_meta import curve_model_meta
 
 router = APIRouter()
 
@@ -50,4 +51,4 @@ def compare(req: CompareRequest):
                 "baseline_fasting": p["baseline_fasting"] + genomic_mod["fasting_offset"],
             }
         )
-    return {"meal": req.meal.model_dump(), "results": results}
+    return {"meal": req.meal.model_dump(), "results": results, "model_meta": curve_model_meta()}

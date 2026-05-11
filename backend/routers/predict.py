@@ -8,6 +8,7 @@ from services.glucose_simulator import (
     peak,
     time_in_range_pct,
 )
+from services.model_meta import curve_model_meta
 
 router = APIRouter()
 
@@ -56,4 +57,5 @@ def predict(req: PredictRequest):
         "time_in_range_pct": time_in_range_pct(curve),
         "auc_above_baseline": auc_above_baseline(curve, p["baseline_fasting"]),
         "baseline_fasting": p["baseline_fasting"] + (genomic_mod["fasting_offset"] if genomic_mod else 0),
+        "model_meta": curve_model_meta(),
     }

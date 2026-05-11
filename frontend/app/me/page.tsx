@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import GlucoseCurveChart from "@/components/GlucoseCurveChart";
+import ModelDisclaimer from "@/components/ModelDisclaimer";
 import { api, type MeProfileResponse } from "@/lib/api";
 import { useUserData } from "@/lib/userStore";
 
@@ -84,18 +85,8 @@ export default function MePage() {
         <p className="text-meridian-body/80 text-sm mt-1 max-w-2xl">{profile.description}</p>
       </header>
 
-      <div className="card p-4 mb-8 bg-amber-50/40 border-amber-200">
-        <div className="flex gap-3 items-start">
-          <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border bg-amber-100/60 text-amber-900 border-amber-200 whitespace-nowrap mt-0.5">
-            Phase 1
-          </span>
-          <p className="text-xs text-amber-900 leading-relaxed">
-            <strong>Heuristic, not GluFormer.</strong> Your CGM is converted to metabolic
-            parameters using a simple heuristic; meal-response curves below are pharmacokinetic
-            simulations. The 5-SNP genome panel is real. The Phase 2 build will run your CGM
-            through the actual GluFormer model for true personalized prediction.
-          </p>
-        </div>
+      <div className="mb-8">
+        <ModelDisclaimer variant="general" />
       </div>
 
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-10">
@@ -140,9 +131,14 @@ export default function MePage() {
       )}
 
       <section className="mb-10">
-        <h2 className="text-sm font-medium text-meridian-green uppercase tracking-wider mb-3">
-          Your genomic variants
-        </h2>
+        <div className="flex items-center gap-2 mb-3">
+          <h2 className="text-sm font-medium text-meridian-green uppercase tracking-wider">
+            Your genomic variants
+          </h2>
+          <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-sky-50 text-sky-800 border border-sky-200 font-medium">
+            Literature-based · heuristic
+          </span>
+        </div>
         {Object.keys(genomic_variants).length === 0 ? (
           <p className="text-sm text-meridian-muted">No matching SNPs were extracted.</p>
         ) : (

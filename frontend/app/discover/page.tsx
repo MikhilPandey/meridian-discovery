@@ -8,6 +8,7 @@ import GlucoseCurveChart, { colorFor, type Series } from "@/components/GlucoseCu
 import MealSelector from "@/components/MealSelector";
 import ParticipantCard from "@/components/ParticipantCard";
 import GenomicOverlay from "@/components/GenomicOverlay";
+import ModelDisclaimer from "@/components/ModelDisclaimer";
 import { useUserData } from "@/lib/userStore";
 
 const DEFAULT_MEAL: Meal = {
@@ -142,21 +143,8 @@ export default function DiscoverPage() {
         )}
       </div>
 
-      <div className="card p-4 mb-8 bg-amber-50/40 border-amber-200">
-        <div className="flex gap-3 items-start">
-          <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border bg-amber-100/60 text-amber-900 border-amber-200 whitespace-nowrap mt-0.5">
-            Phase 1
-          </span>
-          <p className="text-xs text-amber-900 leading-relaxed">
-            <strong>The curves below are physiological simulations, not GluFormer
-            predictions.</strong>{" "}
-            Each archetype is anchored to a real Shanghai 2023 participant (their HbA1c is on
-            the profile page — that part <em>is</em> a real GluFormer-derived prediction).
-            Glucose response curves are generated from a pharmacokinetic model parameterised
-            per archetype, because the trained GluFormer weights are not publicly released.
-            Phase 2 will swap this simulator for real GluFormer autoregressive inference.
-          </p>
-        </div>
+      <div className="mb-8">
+        <ModelDisclaimer variant="curve" />
       </div>
 
       <section className="mb-8">
@@ -178,7 +166,7 @@ export default function DiscoverPage() {
       <section className="mb-8">
         <div className="flex items-baseline justify-between mb-3">
           <h2 className="text-sm font-medium text-meridian-green uppercase tracking-wider">
-            2. Predicted glucose response
+            2. Simulated glucose response
           </h2>
           <div className="text-xs text-meridian-muted">
             {loading ? "computing…" : "180-minute postprandial window"}

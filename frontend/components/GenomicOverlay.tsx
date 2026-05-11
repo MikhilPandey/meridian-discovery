@@ -24,9 +24,11 @@ export default function GenomicOverlay({
           <h3 className="font-semibold text-meridian-green">
             What if their genome was different?
           </h3>
-          <p className="text-xs text-meridian-muted mt-0.5">
+          <p className="text-xs text-meridian-muted mt-0.5 max-w-2xl leading-relaxed">
             Adjusting these toggles updates the dashed curve on the chart in real time.
-            Effects are illustrative — based on published GWAS associations.
+            Variant effects come from published GWAS associations. The quantitative curve
+            changes are <strong>heuristic</strong> — they are not clinically validated and
+            should be read as educational overlays.
           </p>
         </div>
         {isModified && (

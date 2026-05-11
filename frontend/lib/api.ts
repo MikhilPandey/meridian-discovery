@@ -11,6 +11,25 @@ export type Meal = {
 
 export type CurvePoint = { time_minutes: number; glucose_mg_dl: number };
 
+export type CurveModelMeta = {
+  curve_model: "physiologic_simulator" | "gluformer_inference";
+  uses_gluformer_for_curve: boolean;
+  uses_genomic_overlay: boolean;
+  genomic_overlay_type?: string;
+  clinical_use: boolean;
+  disclaimer: string;
+};
+
+export type Hba1cModelMeta = {
+  hba1c_model: "ridge_on_gluformer_embedding";
+  ridge_alpha: number;
+  training_n: number;
+  real_embedding_used: boolean;
+  validated_for_demo: boolean;
+  clinical_use: boolean;
+  disclaimer: string;
+};
+
 export type Participant = {
   id: string;
   label: string;
@@ -32,6 +51,7 @@ export type CompareResult = {
 export type CompareResponse = {
   meal: Meal;
   results: CompareResult[];
+  model_meta?: CurveModelMeta;
 };
 
 export type ProfileResponse = {
@@ -48,7 +68,16 @@ export type ProfileResponse = {
   fasting_glucose_estimate: number;
   genomic_variants: Record<
     string,
-    { rsid: string; genotype: string; effect: string; interpretation: string; risk_allele: string }
+    {
+      rsid: string;
+      genotype: string;
+      effect: string;
+      interpretation: string;
+      risk_allele: string;
+      evidence_level?: string;
+      modifier_status?: string;
+      clinical_use?: boolean;
+    }
   >;
   insights: string[];
   sample_responses: {
@@ -58,7 +87,7 @@ export type ProfileResponse = {
     time_in_range_pct: number;
     auc_above_baseline: number;
   }[];
-  model_meta: { ridge_alpha: number; training_n: number; real_embedding_used: boolean };
+  model_meta: Hba1cModelMeta & { curves?: CurveModelMeta };
 };
 
 export type SnpModifier = { amplitude: number; clearance: number; fasting_offset: number };
@@ -72,6 +101,9 @@ export type SnpDefinition = {
   interpretations: Record<string, string>;
   source?: string;
   population_frequency?: string;
+  evidence_level?: string;
+  modifier_status?: string;
+  clinical_use?: boolean;
 };
 
 export type SnpCatalog = Record<string, SnpDefinition>;
@@ -122,7 +154,16 @@ export type MeProfileResponse = {
   };
   genomic_variants: Record<
     string,
-    { rsid: string; genotype: string; effect: string; interpretation: string; risk_allele: string }
+    {
+      rsid: string;
+      genotype: string;
+      effect: string;
+      interpretation: string;
+      risk_allele: string;
+      evidence_level?: string;
+      modifier_status?: string;
+      clinical_use?: boolean;
+    }
   >;
   modifier: { amplitude: number; clearance: number; fasting_offset: number };
   sample_responses: {
@@ -132,6 +173,7 @@ export type MeProfileResponse = {
     time_in_range_pct: number;
     auc_above_baseline: number;
   }[];
+  model_meta?: CurveModelMeta;
 };
 
 export type MePayload = {

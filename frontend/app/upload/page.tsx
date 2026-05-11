@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import FileDrop from "@/components/FileDrop";
+import ModelDisclaimer from "@/components/ModelDisclaimer";
 import { api } from "@/lib/api";
 import type { CgmStats } from "@/lib/cgmParser";
 import { parseCgmCsvFile } from "@/lib/cgmParser";
@@ -82,22 +83,27 @@ export default function UploadPage() {
         </h1>
         <p className="text-meridian-muted text-sm mt-1">
           Bring your 23andMe raw genotype file and (optionally) a CGM export. We&apos;ll
-          show you predicted glucose responses for common meals using your specific genome
-          and metabolic profile.
+          show simulated glucose responses for common meals using your specific genome and
+          a heuristic profile derived from your CGM stats.
         </p>
       </div>
 
-      <div className="card p-4 mb-6 bg-emerald-50/30 border-emerald-200">
+      <div className="card p-4 mb-4 bg-emerald-50/30 border-emerald-200">
         <div className="flex gap-3 items-start">
           <span className="text-emerald-700 mt-0.5">●</span>
           <div className="text-xs text-emerald-900 leading-relaxed">
             <strong>Your data stays in your browser.</strong> The 23andMe file is parsed
-            locally — only the 5 SNPs we care about leave your machine. The CGM file is
-            either parsed locally (CSV) or sent to the backend for one-shot extraction
-            (PDF) and discarded immediately. Nothing is saved. Refreshing this page wipes
-            it.
+            locally — only the 5 SNPs we care about leave your machine. CSV uploads are also
+            parsed in-browser. <strong>PDF uploads are the only path that sends bytes to the
+            backend</strong> (PDF parsing requires server-side `pypdf`); the file is parsed
+            into memory, never written to disk, and discarded after the response. CSV is
+            preferred. Nothing is persisted anywhere. Refreshing wipes it.
           </div>
         </div>
+      </div>
+
+      <div className="mb-6">
+        <ModelDisclaimer variant="general" />
       </div>
 
       <div className="space-y-4">

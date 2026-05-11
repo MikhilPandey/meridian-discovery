@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { api, type ProfileResponse } from "@/lib/api";
 import GlucoseCurveChart from "@/components/GlucoseCurveChart";
 import MetabolicScore from "@/components/MetabolicScore";
+import ModelDisclaimer from "@/components/ModelDisclaimer";
 
 const TIER_PILL: Record<string, string> = {
   low: "pill-low",
@@ -78,6 +79,10 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
         </div>
         <div className={TIER_PILL[risk_tier]}>{risk_tier} risk</div>
       </header>
+
+      <div className="mb-8">
+        <ModelDisclaimer variant="general" />
+      </div>
 
       <section className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-6 mb-10">
         <div className="card p-6 flex items-center justify-center">
@@ -153,9 +158,14 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
       </section>
 
       <section className="mb-10">
-        <h3 className="text-sm font-medium text-meridian-green uppercase tracking-wider mb-3">
-          Genomic variants
-        </h3>
+        <div className="flex items-center gap-2 mb-3">
+          <h3 className="text-sm font-medium text-meridian-green uppercase tracking-wider">
+            Genomic variants
+          </h3>
+          <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-sky-50 text-sky-800 border border-sky-200 font-medium">
+            Literature-based · heuristic
+          </span>
+        </div>
         <div className="card p-1 overflow-hidden">
           <table className="w-full text-sm">
             <thead className="text-xs text-meridian-muted bg-meridian-cream-light">
@@ -191,6 +201,11 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="mt-2 text-[11px] text-meridian-muted leading-relaxed">
+          Variant effects are educational overlays based on published GWAS associations. The
+          quantitative curve modifiers (amplitude, clearance, fasting offset) are heuristic
+          and not clinically validated.
         </div>
       </section>
 

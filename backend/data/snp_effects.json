@@ -15,7 +15,10 @@
       "TT": "2 risk alleles -- noticeably elevated post-meal spikes and slower clearance"
     },
     "source": "Zeevi et al. Cell 2015; Grant et al. Nature Genetics 2006",
-    "population_frequency": "~30% carry at least one T allele"
+    "population_frequency": "~30% carry at least one T allele",
+    "evidence_level": "research_association",
+    "modifier_status": "heuristic_demo",
+    "clinical_use": false
   },
   "GCK": {
     "rsid": "rs1799884",
@@ -33,7 +36,10 @@
       "TT": "Elevated fasting glucose set-point"
     },
     "source": "Dupuis et al. Nature Genetics 2010",
-    "population_frequency": "~20% carry risk allele"
+    "population_frequency": "~20% carry risk allele",
+    "evidence_level": "research_association",
+    "modifier_status": "heuristic_demo",
+    "clinical_use": false
   },
   "SLC30A8": {
     "rsid": "rs13266634",
@@ -51,7 +57,10 @@
       "TT": "Protective -- normal insulin secretion"
     },
     "source": "Sladek et al. Nature 2007",
-    "population_frequency": "~70% carry C allele (common)"
+    "population_frequency": "~70% carry C allele (common)",
+    "evidence_level": "research_association",
+    "modifier_status": "heuristic_demo",
+    "clinical_use": false
   },
   "MTNR1B": {
     "rsid": "rs10830963",
@@ -68,7 +77,10 @@
       "CG": "Mildly elevated morning glucose",
       "GG": "Elevated morning glucose, especially with late meals"
     },
-    "source": "Bouatia-Naji et al. Nature Genetics 2009"
+    "source": "Bouatia-Naji et al. Nature Genetics 2009",
+    "evidence_level": "research_association",
+    "modifier_status": "heuristic_demo",
+    "clinical_use": false
   },
   "PPARG": {
     "rsid": "rs1801282",
@@ -85,6 +97,9 @@
       "CG": "Pro12Ala -- slightly improved insulin sensitivity",
       "GG": "Ala12Ala -- improved insulin sensitivity"
     },
-    "source": "Altshuler et al. Nature Genetics 2000"
+    "source": "Altshuler et al. Nature Genetics 2000",
+    "evidence_level": "research_association",
+    "modifier_status": "heuristic_demo",
+    "clinical_use": false
   }
 }

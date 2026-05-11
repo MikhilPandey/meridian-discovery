@@ -1,16 +1,91 @@
 # Meridian Discovery
 
-A research demo of personalized glucose response prediction with a genomic
-overlay, built on top of the GluFormer architecture (Segal Lab, Weizmann
-Institute, Nature 2025).
+A lightweight demo of genome-anchored response intelligence. It combines
+**GluFormer-derived metabolic embeddings** for HbA1c estimation,
+**privacy-preserving upload flows** for 23andMe + CGM data, and
+**educational glucose-response simulations** to visualize individual response.
+
+Built on top of the GluFormer architecture (Segal Lab, Weizmann Institute,
+Nature 2025).
 
 > **What it does.** Pick a meal, see how six real metabolic phenotypes respond
 > differently. Toggle a TCF7L2 risk variant and watch the curve shift. Optionally
 > upload your own 23andMe + CGM data to compare yourself against the archetypes.
 
-## What's real, what's not
+## Model honesty
 
-Be precise about this before claiming anything publicly:
+This demo has two model layers:
+
+1. **GluFormer-backed metabolic representation.** We use the pre-extracted
+   GluFormer embeddings from the [public demo data](https://github.com/Guylu/GluFormer/tree/main/demo)
+   and train a Ridge regression head (α=80, per the Segal lab methodology) to
+   estimate HbA1c. This is the part of the demo where a real foundation model
+   is doing real work — predicted HbA1c values are displayed alongside the lab
+   measurement on every profile page.
+
+2. **Physiologic glucose simulation.** Post-meal glucose curves are generated
+   by a lightweight pharmacokinetic simulator using meal macros, archetype
+   metabolic parameters, and optional SNP modifiers. These curves are
+   educational and are **not** GluFormer inference. Trained GluFormer weights
+   are not publicly released, so we can't run real inference today.
+
+   **Phase 2** replaces the simulator with real GluFormer-based sequence
+   inference when trained weights and an appropriate meal-tokenization pipeline
+   are available. The API contracts and frontend stay identical — see
+   `services/glucose_simulator.py` for the drop-in target.
+
+Every API response that returns a curve or a clinical estimate now carries a
+`model_meta` block declaring its provenance (`curve_model`,
+`uses_gluformer_for_curve`, `clinical_use`, etc.), so overclaiming is
+impossible at the API boundary.
+
+### Ridge head evaluation
+
+5-fold cross-validation × 10 seeds, on n=105 matched Shanghai participants
+(`backend/scripts/evaluate_hba1c_ridge.py`):
+
+```
+Ridge on GluFormer embeddings
+  n = 105
+  alpha = 80.0
+
+  MAE      = 18.63 ± 0.39 mmol/mol
+  RMSE     = 23.52 ± 0.49 mmol/mol
+  Pearson  = 0.43 ± 0.03
+
+Mean-baseline (predict y.mean() for everyone)
+  MAE      = 21.86 mmol/mol
+  RMSE     = 26.03 mmol/mol
+
+Lift over mean baseline: 3.24 mmol/mol MAE
+```
+
+Modest lift — exactly what we want to surface honestly. The Shanghai cohort is
+heavily T2D-skewed, which compresses the dynamic range a Ridge head on
+embeddings alone can recover.
+
+## 23andMe demo mode vs WGS production mode
+
+This demo accepts 23andMe-style raw genotype TXT files because they are easy
+for users to export and test with. Meridian's production product is designed
+around **WGS / VCF ingestion**.
+
+The 5-SNP parser (`frontend/lib/genomeParser.ts`) is a demo-mode adapter.
+Future production adapters should support:
+
+- VCF ingestion (single-sample, multi-sample, population)
+- WGS-derived variant annotation (VEP, SnpEff)
+- Ancestry-aware risk interpretation
+- Pharmacogenomics (CYP2C9, CYP2C19, SLCO1B1, etc.)
+- Polygenic features (PRS-CS or LDpred-2)
+- Privacy-preserving local computation where possible
+
+A placeholder for this lives at `backend/services/wgs_feature_mapper.py`
+(`NotImplementedError`).
+
+## Provenance ledger
+
+At-a-glance reference for what each piece of the demo actually is:
 
 | Component | Status | Notes |
 | --- | --- | --- |
@@ -69,6 +144,23 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+## Tests and evaluation
+
+```bash
+cd backend && source .venv/bin/activate
+
+# Unit + route tests (29 tests, ~2s)
+pytest
+
+# Ridge head evaluation on real GluFormer embeddings (5-fold CV × 10 seeds)
+python scripts/evaluate_hba1c_ridge.py
+```
+
+The test suite covers: genomic modifier composition, glucose simulator
+determinism + plausibility, CGM→profile derivation, and end-to-end route
+contracts (including the `model_meta` fields on every curve-returning
+endpoint).
 
 ## Pages
 

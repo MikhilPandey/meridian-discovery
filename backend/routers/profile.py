@@ -7,6 +7,7 @@ from services.glucose_simulator import (
     peak,
     time_in_range_pct,
 )
+from services.model_meta import curve_model_meta, hba1c_model_meta
 
 router = APIRouter()
 
@@ -89,6 +90,9 @@ def get_profile(participant_id: str):
             "effect": snp_def.get("effect"),
             "interpretation": state.genomic_modifier.interpret(gene, genotype),
             "risk_allele": snp_def.get("risk_allele"),
+            "evidence_level": snp_def.get("evidence_level"),
+            "modifier_status": snp_def.get("modifier_status"),
+            "clinical_use": snp_def.get("clinical_use"),
         }
 
     sample_responses = []
@@ -128,9 +132,12 @@ def get_profile(participant_id: str):
         "insights": _build_insights(p, hba1c_predicted, risk_tier),
         "sample_responses": sample_responses,
         "model_meta": {
-            "ridge_alpha": predictor.alpha,
-            "training_n": predictor.n_train,
-            "real_embedding_used": has_real_embedding,
+            **hba1c_model_meta(
+                alpha=predictor.alpha,
+                n_train=predictor.n_train,
+                real_embedding_used=has_real_embedding,
+            ),
+            "curves": curve_model_meta(),
         },
     }
 
