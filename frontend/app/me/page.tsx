@@ -84,6 +84,20 @@ export default function MePage() {
         <p className="text-meridian-body/80 text-sm mt-1 max-w-2xl">{profile.description}</p>
       </header>
 
+      <div className="card p-4 mb-8 bg-amber-50/40 border-amber-200">
+        <div className="flex gap-3 items-start">
+          <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border bg-amber-100/60 text-amber-900 border-amber-200 whitespace-nowrap mt-0.5">
+            Phase 1
+          </span>
+          <p className="text-xs text-amber-900 leading-relaxed">
+            <strong>Heuristic, not GluFormer.</strong> Your CGM is converted to metabolic
+            parameters using a simple heuristic; meal-response curves below are pharmacokinetic
+            simulations. The 5-SNP genome panel is real. The Phase 2 build will run your CGM
+            through the actual GluFormer model for true personalized prediction.
+          </p>
+        </div>
+      </div>
+
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-10">
         <Stat
           label="Baseline fasting"
@@ -177,9 +191,14 @@ export default function MePage() {
       </section>
 
       <section className="mb-12">
-        <h2 className="text-sm font-medium text-meridian-green uppercase tracking-wider mb-3">
-          Predicted response across meals
-        </h2>
+        <div className="flex items-center gap-2 mb-3">
+          <h2 className="text-sm font-medium text-meridian-green uppercase tracking-wider">
+            Predicted response across meals
+          </h2>
+          <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-medium">
+            Simulated
+          </span>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {sample_responses.map((sr, i) => (
             <div key={i} className="card p-4">
@@ -201,8 +220,11 @@ export default function MePage() {
       </section>
 
       <div className="text-[11px] text-meridian-muted">
-        Glucose responses simulated from your derived metabolic profile + literature-based SNP
-        modifiers. Not medical advice.
+        Your metabolic profile parameters above (baseline fasting, insulin sensitivity, carb
+        sensitivity) are derived heuristically from CGM summary stats — they are not GluFormer
+        outputs. Glucose response curves are pharmacokinetic simulations. SNP modifiers are from
+        published GWAS literature. When trained GluFormer weights are available, the same UI
+        will run real model inference. Not medical advice.
       </div>
     </div>
   );

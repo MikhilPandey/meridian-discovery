@@ -90,8 +90,13 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
             <div>
-              <div className="text-[10px] uppercase tracking-wide text-meridian-muted">
-                HbA1c (predicted)
+              <div className="flex items-center gap-1.5">
+                <div className="text-[10px] uppercase tracking-wide text-meridian-muted">
+                  HbA1c (predicted)
+                </div>
+                <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-medium">
+                  Real GluFormer
+                </span>
               </div>
               <div className="text-xl font-semibold text-meridian-green">
                 {hba1c.predicted_pct}%{" "}
@@ -100,7 +105,7 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
                 </span>
               </div>
               <div className="text-[10px] text-meridian-muted mt-0.5">
-                Ridge regression on GluFormer embedding
+                Ridge regression on a real 1024-dim GluFormer embedding
               </div>
             </div>
             {hba1c.actual_pct != null && (
@@ -206,9 +211,14 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
       </section>
 
       <section className="mb-12">
-        <h3 className="text-sm font-medium text-meridian-green uppercase tracking-wider mb-3">
-          Predicted response across meals
-        </h3>
+        <div className="flex items-center gap-2 mb-3">
+          <h3 className="text-sm font-medium text-meridian-green uppercase tracking-wider">
+            Predicted response across meals
+          </h3>
+          <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-medium">
+            Simulated
+          </span>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {data.sample_responses.map((sr, i) => (
             <div key={i} className="card p-4">

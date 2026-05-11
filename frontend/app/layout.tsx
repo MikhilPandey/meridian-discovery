@@ -42,10 +42,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </header>
         <main>{children}</main>
         <footer className="border-t border-meridian-cream mt-16">
-          <div className="max-w-7xl mx-auto px-6 py-8 text-xs text-meridian-muted leading-relaxed">
-            Research demonstration. Not medical advice. Glucose responses are simulated based on
-            published metabolic models and GWAS literature. Built on GluFormer architecture (Segal
-            Lab, Weizmann Institute, Nature 2025).
+          <div className="max-w-7xl mx-auto px-6 py-8 text-xs text-meridian-muted leading-relaxed space-y-1.5">
+            <p>Research demonstration. Not medical advice.</p>
+            <p>
+              HbA1c predictions use real GluFormer embeddings from the published Shanghai 2023
+              cohort with a Ridge regression head (Segal lab methodology). Glucose response
+              curves are pharmacokinetic simulations, not GluFormer inference — trained
+              GluFormer weights are not publicly released. SNP modifiers are from published
+              GWAS literature.
+            </p>
           </div>
         </footer>
       </body>

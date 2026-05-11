@@ -142,6 +142,23 @@ export default function DiscoverPage() {
         )}
       </div>
 
+      <div className="card p-4 mb-8 bg-amber-50/40 border-amber-200">
+        <div className="flex gap-3 items-start">
+          <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border bg-amber-100/60 text-amber-900 border-amber-200 whitespace-nowrap mt-0.5">
+            Phase 1
+          </span>
+          <p className="text-xs text-amber-900 leading-relaxed">
+            <strong>The curves below are physiological simulations, not GluFormer
+            predictions.</strong>{" "}
+            Each archetype is anchored to a real Shanghai 2023 participant (their HbA1c is on
+            the profile page — that part <em>is</em> a real GluFormer-derived prediction).
+            Glucose response curves are generated from a pharmacokinetic model parameterised
+            per archetype, because the trained GluFormer weights are not publicly released.
+            Phase 2 will swap this simulator for real GluFormer autoregressive inference.
+          </p>
+        </div>
+      </div>
+
       <section className="mb-8">
         <div className="flex items-baseline justify-between mb-3">
           <h2 className="text-sm font-medium text-meridian-green uppercase tracking-wider">
@@ -170,9 +187,12 @@ export default function DiscoverPage() {
         <div className="card p-5">
           {err && <div className="text-sm text-rose-700">{err}</div>}
           {!err && series.length > 0 && <GlucoseCurveChart series={series} height={420} />}
-          <div className="mt-2 text-[11px] text-meridian-muted">
-            Simulated response based on metabolic profile and published pharmacokinetic models.
-            Shaded band = healthy 70–140 mg/dL range.
+          <div className="mt-2 flex items-center gap-2 text-[11px] text-meridian-muted">
+            <span className="inline-block px-1.5 py-0.5 rounded font-medium text-amber-800 bg-amber-50 border border-amber-200">
+              Simulated
+            </span>
+            Curves are pharmacokinetic simulations parameterised per archetype, not GluFormer
+            inference. Shaded band = healthy 70–140 mg/dL range.
           </div>
         </div>
       </section>

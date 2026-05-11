@@ -1,15 +1,37 @@
 # Meridian Discovery
 
-A web demo of personalized glucose response prediction with a genomic overlay,
-built on the GluFormer architecture (Segal Lab, Weizmann Institute, Nature 2025).
+A research demo of personalized glucose response prediction with a genomic
+overlay, built on top of the GluFormer architecture (Segal Lab, Weizmann
+Institute, Nature 2025).
 
 > **What it does.** Pick a meal, see how six real metabolic phenotypes respond
 > differently. Toggle a TCF7L2 risk variant and watch the curve shift. Optionally
 > upload your own 23andMe + CGM data to compare yourself against the archetypes.
->
-> **Status.** Phase 1 — real GluFormer embeddings + Ridge HbA1c head from the
-> published Shanghai 2023 cohort. Glucose curves are physiologic simulations
-> (drop-in for real model inference once GluFormer weights are trained).
+
+## What's real, what's not
+
+Be precise about this before claiming anything publicly:
+
+| Component | Status | Notes |
+| --- | --- | --- |
+| 113 × 1024-dim **GluFormer embeddings** (Shanghai 2023) | **Real GluFormer output** | Pre-extracted by Segal lab, published in their [demo dir](https://github.com/Guylu/GluFormer/tree/main/demo), used as-is. |
+| **HbA1c prediction** on `/profile/[id]` and `/me` | **Real GluFormer-derived** | Ridge regression (α=80) on the real embeddings, mirroring `Pred_Shanghai.py`. Predicted values track lab-measured HbA1c. |
+| **Glucose response curves** on `/discover` (the hero visual) | **Pharmacokinetic simulation** | Dual-exponential model parameterised per archetype. Not GluFormer — trained weights are not publicly released. The simulator is a one-file drop-in target for real GluFormer autoregression in Phase 2. |
+| **Archetype metabolic profiles** (P001–P006) | **Hand-curated** | Each is anchored to a real Shanghai participant whose lab HbA1c matches the archetype's band, but the simulator parameters (`insulin_sensitivity`, `carb_sensitivity`, etc.) are picked to tell a clear story. |
+| **SNP modifiers** (TCF7L2, GCK, SLC30A8, MTNR1B, PPARG) | **Published GWAS literature** | Zeevi 2015, Grant 2006, Dupuis 2010, Sladek 2007, Bouatia-Naji 2009, Altshuler 2000. Illustrative, not learned. |
+| **User-uploaded CGM → metabolic profile** (`/me`) | **Heuristic** | Simple rules-based mapping from CGM summary stats (avg, CV, eHbA1c, TIR) to simulator parameters. Not a learned model. |
+
+### What you can and cannot claim
+
+- ✅ "Built on real GluFormer embeddings from the Shanghai 2023 cohort."
+- ✅ "Reproduces the GluFormer paper's HbA1c prediction methodology."
+- ✅ "Demonstrates that a foundation-model embedding of CGM data predicts clinical glycemic markers."
+- ❌ Don't say "glucose response curves are GluFormer predictions" — they aren't.
+- ❌ Don't say "built entirely on GluFormer" — the hero visual is a simulation.
+
+The UI labels every screen explicitly with **"Real GluFormer"** (emerald) or
+**"Simulated"** (amber) tags so a skeptical viewer can tell at a glance what
+they're looking at.
 
 ## What's in here
 
