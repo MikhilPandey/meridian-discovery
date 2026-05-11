@@ -95,9 +95,9 @@ export default function GlucoseCurveChart({
               fontSize: 12,
             }}
             labelFormatter={(t) => `t = ${t} min`}
-            formatter={(value: number, name: string) => {
-              const s = series.find((x) => x.id === name);
-              return [`${value} mg/dL`, s?.label ?? name];
+            formatter={(value, name) => {
+              const s = series.find((x) => x.id === String(name));
+              return [`${value} mg/dL`, s?.label ?? String(name)];
             }}
           />
           <Legend

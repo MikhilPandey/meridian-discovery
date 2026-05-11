@@ -25,7 +25,7 @@ let state: UserData | null = null;
 const listeners = new Set<() => void>();
 
 function emit() {
-  for (const l of listeners) l();
+  listeners.forEach((l) => l());
 }
 
 export function setUserData(d: UserData | null) {
