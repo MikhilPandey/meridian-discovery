@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { api, type ProfileResponse } from "@/lib/api";
 import GlucoseCurveChart from "@/components/GlucoseCurveChart";
 import MetabolicScore from "@/components/MetabolicScore";
@@ -21,16 +21,18 @@ const VARIANT_COLOR: Record<string, string> = {
   GG: "bg-rose-50 text-rose-800 border-rose-100",
 };
 
-export default function ProfilePage({ params }: { params: { id: string } }) {
+export default function ProfilePage({ params }: { params: Promise<{ id: string }> }) {
+  // Next 15: route params are async; unwrap with React's use() in a client component.
+  const { id } = use(params);
   const [data, setData] = useState<ProfileResponse | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => {
     api
-      .profile(params.id)
+      .profile(id)
       .then(setData)
       .catch((e) => setErr(String(e)));
-  }, [params.id]);
+  }, [id]);
 
   if (err) {
     return (
